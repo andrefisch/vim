@@ -145,8 +145,9 @@ set smartcase
 set expandtab
 set smarttab
 " Who wants an 8 character tab?  Not me!
-set shiftwidth=4
+set tabstop=4
 set softtabstop=4
+set shiftwidth=4
 " Cool tab completion stuff
 set wildmenu
 set wildmode=list:longest,full
@@ -157,6 +158,8 @@ set scrolloff=5
 " current directory of each window will always be the same as the file
 " currently being edited
 " set autochdir
+" incremental search
+set incsearch
 
 " support all three newline formats
 set fileformats=unix,dos,mac
@@ -170,8 +173,13 @@ set directory=~/.vim/tmp
 " Statusline with buffer number, file name, modification status, position within the buffer and a hex code of the character under cursor
 set statusline=%2*%n\|%<%*%-.40F%2*\|\ %2*%M\ %3*%=%1*\ %1*%2.6l%2*x%1*%1.9(%c%V%)%2*[%1*%P%2*]%1*%2B
 
+" use ctrl+x ctrl+k to invike dictionary completion normally
 " adds dictionary functionality to vim
 set dictionary+=/usr/share/dict/words
+" adds dictionary directly to ctrl+n
+set complete+=k
+" adds tags directly to ctrl+n
+set complete+=t
 
 "display a warning if fileformat isnt unix
 " set statusline+=%#warningmsg#
@@ -219,8 +227,6 @@ endfunction
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
 
-"localleader test
-nnoremap <localleader>t :echom "This test was successful"<cr>
 """""""""""""""
 " NORMAL MODE "
 """""""""""""""
@@ -230,22 +236,25 @@ nnoremap <silent> <leader>ev :split $MYVIMRC<CR>
 nnoremap <silent> <leader>vv :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
+" save session
+nnoremap <leader>ss :mksession<cr>
+
 " turn syntax on quickly
-nnoremap <silent> <leader>so :syntax on<CR>
+nnoremap <silent> <leader>so :syntax on<cr>
 " here we make sure syntax is on, set tags if they exist, and turn on
 " additional syntax
-nnoremap <silent> <leader>re :syntax on<CR>:set tags=./tags,tags;$HOME<cr>:UpdateTypesFile<cr>
+nnoremap <silent> <leader>re :syntax on<cr>:set tags=./tags,tags;$HOME<cr>:UpdateTypesFile<cr>
 " remap tag keys to also perform these updates automatically
 " open the tag in a new tab
-nnoremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+nnoremap <C-\> :tab split<cr>:exec("tag ".expand("<cword>"))<cr>
 
 " give the enter key power in insert mode
-nnoremap <CR> o<Esc>
+nnoremap <cr> o<Esc>
 nnoremap <S-Enter> O<Esc>
 " toggles search highlight
-nnoremap <F3> :set hlsearch!<CR>
+nnoremap <leader>, :set hlsearch!<CR>
 " brings up undo tree
-nnoremap <F6> :GundoToggle<CR>
+nnoremap <leader>u :GundoToggle<CR>
 "encrypt or decrpyt all text then center cursor
 nnoremap <F12> ggVGg?''zz
 
@@ -270,8 +279,18 @@ nnoremap <leader>5 i<Space><Esc>la<Space><Esc>h
 nnoremap <leader>d :set hlsearch<cr>/\(\<\w\+\>\)\_s*\1<cr>
 "find file in nerdtree
 nnoremap <leader>f :NERDTreeFind<cr>
-"properly format a json file
+
+"different ways to format a json file
+"a json file that is already on multiple lines
 nnoremap <leader>ff :%!python -m json.tool<cr>
+"a file in json format but not a json file
+nnoremap <leader>fn :%s/{/\r{\r/g<cr>:%s/}/\r}\r/g<cr>gg=G
+"a json file that is all on one line
+nnoremap <leader>fo :%s/{/\r{\r/g<cr>:%s/}/\r}\r/g<cr>:%!python -m json.tool<cr>gg=G
+
+" add quotes around the word
+nnoremap <leader>' :silent! normal mqea"<Esc>bi"<Esc>`ql
+
 "toggle quick fix menu
 nnoremap <leader>q :call QuickfixToggle()<cr>
 "set ctags tag location
@@ -279,7 +298,7 @@ nnoremap <leader>t :set tags=./tags,tags;$HOME<cr>
 "fix { in a file
 nnoremap <leader>[ mq:%s/{$/\r{/<CR>ggvG=`q
 
-"searches are magic by default
+"searches start with hlsearch activated
 nnoremap # :set hlsearch<cr>#
 nnoremap * :set hlsearch<cr>*
 nnoremap / :set hlsearch<cr>/
@@ -292,6 +311,9 @@ nnoremap ? :set hlsearch<cr>?
 
 " highlight all text entered in last insert mode
 nnoremap <leader>l `[v`]
+
+" test
+nnoremap <Space>` :echom "This is a test"<cr>
 
 " swap ; and :
 " nnoremap ; :
@@ -374,7 +396,7 @@ colorscheme jgg
 augroup colors
     autocmd!
     autocmd BufRead,BufEnter * colorscheme jgg
-    autocmd BufRead,BufEnter *.txt colorscheme behelit
+    " autocmd BufRead,BufEnter *.txt colorscheme behelit
     autocmd BufRead,BufEnter *.rb colorscheme kkruby
     autocmd BufRead,BufEnter *.sh colorscheme torte
 augroup END
