@@ -288,7 +288,7 @@ nnoremap <leader>fn :%s/{/\r{\r/g<cr>:%s/}/\r}\r/g<cr>gg=G
 "a json file that is all on one line
 nnoremap <leader>fo :%s/{/\r{\r/g<cr>:%s/}/\r}\r/g<cr>:%!python -m json.tool<cr>gg=G
 
-" add quotes around the word
+"add quotes around the word
 nnoremap <leader>' :silent! normal mqea"<Esc>bi"<Esc>`ql
 
 "toggle quick fix menu
@@ -297,6 +297,10 @@ nnoremap <leader>q :call QuickfixToggle()<cr>
 nnoremap <leader>t :set tags=./tags,tags;$HOME<cr>
 "fix { in a file
 nnoremap <leader>[ mq:%s/{$/\r{/<CR>ggvG=`q
+
+"D deletes until the end of line, C changes until end of line, Y yanks the
+"whole line? not anymore...
+nnoremap Y y$
 
 "searches start with hlsearch activated
 nnoremap # :set hlsearch<cr>#
@@ -311,9 +315,6 @@ nnoremap ? :set hlsearch<cr>?
 
 " highlight all text entered in last insert mode
 nnoremap <leader>l `[v`]
-
-" test
-nnoremap <Space>` :echom "This is a test"<cr>
 
 " swap ; and :
 " nnoremap ; :
