@@ -166,9 +166,9 @@ set fileformats=unix,dos,mac
 
 " extra files that are created go in these folders. the folders have to
 " be created before this will work!
-set backup
-set backupdir=~/.vim/backup
-set directory=~/.vim/tmp
+" set backup
+" set backupdir=~/.vim/backup
+" set directory=~/.vim/tmp
 
 " Statusline with buffer number, file name, modification status, position within the buffer and a hex code of the character under cursor
 set statusline=%2*%n\|%<%*%-.40F%2*\|\ %2*%M\ %3*%=%1*\ %1*%2.6l%2*x%1*%1.9(%c%V%)%2*[%1*%P%2*]%1*%2B
