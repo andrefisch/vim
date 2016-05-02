@@ -41,31 +41,32 @@ augroup sh
     autocmd!
     autocmd FileType sh nnoremap <localleader>c mq^i# <esc>`q2l
     autocmd FileType sh nnoremap <localleader>u mq:s/^#\s//<cr>`q2h:set nohlsearch<cr>
-    autocmd FileType sh nnoremap <localleader>r :w<CR>:! sh % 
+    autocmd FileType sh nnoremap <localleader>r :w<cr>:! sh % 
 augroup END
 
 " python stuff
 augroup python
     autocmd!
-    autocmd FileType python iabbrev <buffer> sfor for i in range (0,):<C-[>hi
+    autocmd FileType python iabbrev <buffer> forl for i in range (0,):<C-[>hi
     autocmd FileType python nnoremap <localleader>c mq^i# <esc>`q2l
     autocmd FileType python nnoremap <localleader>u mq:s/^#\s//<cr>`q2h:set nohlsearch<cr>
-    autocmd FileType python nnoremap <localleader>r :w<CR>:! python % 
+    autocmd FileType python nnoremap <localleader>r :w<cr>:! python % 
 augroup END
 
 " potion stuff
 augroup potion
     autocmd!
-    autocmd FileType potion nnoremap <localleader>r :w<CR>:! potion % 
+    autocmd FileType potion nnoremap <localleader>r :w<cr>:! potion % 
 augroup END
 
 " perl stuff
 augroup perl
     autocmd!
-    autocmd FileType perl iabbrev <buffer> sfor for (my $i = 0; i <; i++)<CR>{<C-[>o<C-[>o}<C-[>3k18la
+    autocmd FileType perl iabbrev <buffer> forl for (my $i = 0; $i <; $i++)<cr>{<C-[>o<C-[>o}<C-[>3k18la
+    autocmd FileType perl iabbrev <buffer> AR $ARGV[0]
     autocmd FileType perl nnoremap <localleader>c mq^i# <esc>`q2l
     autocmd FileType perl nnoremap <localleader>u mq:s/^#\s//<cr>`q2h:set nohlsearch<cr>
-    autocmd FileType perl nnoremap <localleader>r :w<CR>:! perl % 
+    autocmd FileType perl nnoremap <localleader>r :w<cr>:! perl % 
     autocmd FileType perl set keywordprg=perldoc\ -f
 augroup END
 
@@ -73,19 +74,19 @@ augroup END
 " ruby stuff
 augroup ruby
     autocmd!
-    autocmd FileType ruby iabbrev <buffer> sfor for (my $i = 0; i <; i++)<CR>{<C-[>o<C-[>o}<C-[>3k18la
+    autocmd FileType ruby iabbrev <buffer> forl for (my $i = 0; i <; i++)<cr>{<C-[>o<C-[>o}<C-[>3k18la
     autocmd FileType ruby nnoremap <localleader>c mq^i# <esc>`q2l
     autocmd FileType ruby nnoremap <localleader>u mq:s/^#\s//<cr>`q2h:set nohlsearch<cr>
-    autocmd FileType ruby nnoremap <localleader>r :w<CR>:! ruby % 
+    autocmd FileType ruby nnoremap <localleader>r :w<cr>:! ruby % 
 augroup END
 
 " java stuff
 augroup java
     autocmd!
-    autocmd FileType java iabbrev <buffer> sfor for (int i = 0; i <; i++)<CR>{<C-[>o<C-[>o}<C-[>3k18la
+    autocmd FileType java iabbrev <buffer> forl for (int i = 0; i <; i++)<cr>{<C-[>o<C-[>o}<C-[>3k18la
     autocmd FileType java nnoremap <localleader>c mq^i// <esc>`q3l
     autocmd FileType ruby nnoremap <localleader>u mq:s/^\/\/\s//<cr>`q2h:set nohlsearch<cr>
-    autocmd FileType java nnoremap <localleader>r :w<CR>:! java % 
+    autocmd FileType java nnoremap <localleader>r :w<cr>:! java % 
 augroup END
 
 " html stuff
@@ -145,9 +146,9 @@ set smartcase
 set expandtab
 set smarttab
 " Who wants an 8 character tab?  Not me!
+set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-set shiftwidth=4
 " Cool tab completion stuff
 set wildmenu
 set wildmode=list:longest,full
@@ -166,9 +167,9 @@ set fileformats=unix,dos,mac
 
 " extra files that are created go in these folders. the folders have to
 " be created before this will work!
-" set backup
-" set backupdir=~/.vim/backup
-" set directory=~/.vim/tmp
+set backup
+set backupdir=~/.vim/backup
+set directory=~/.vim/tmp
 
 " Statusline with buffer number, file name, modification status, position within the buffer and a hex code of the character under cursor
 set statusline=%2*%n\|%<%*%-.40F%2*\|\ %2*%M\ %3*%=%1*\ %1*%2.6l%2*x%1*%1.9(%c%V%)%2*[%1*%P%2*]%1*%2B
@@ -232,12 +233,9 @@ let maplocalleader = "\\"
 """""""""""""""
 
 " Quickly edit/reload the vimrc file
-nnoremap <silent> <leader>ev :split $MYVIMRC<CR>
-nnoremap <silent> <leader>vv :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
-
-" save session
-nnoremap <leader>ss :mksession<cr>
+nnoremap <silent> <leader>ev :split $MYVIMRC<cr>
+nnoremap <silent> <leader>vv :vsplit $MYVIMRC<cr>
+nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
 
 " turn syntax on quickly
 nnoremap <silent> <leader>so :syntax on<cr>
@@ -252,15 +250,15 @@ nnoremap <C-\> :tab split<cr>:exec("tag ".expand("<cword>"))<cr>
 nnoremap <cr> o<Esc>
 nnoremap <S-Enter> O<Esc>
 " toggles search highlight
-nnoremap <leader>, :set hlsearch!<CR>
+nnoremap <leader>, :set hlsearch!<cr>
 " brings up undo tree
-nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>u :GundoToggle<cr>
 "encrypt or decrpyt all text then center cursor
 nnoremap <F12> ggVGg?''zz
 
 " move a line of text up or down
-nnoremap - :m .-2<CR>==
-nnoremap _ :m .+1<CR>==
+nnoremap - :m .-2<cr>==
+nnoremap _ :m .+1<cr>==
 
 " since ctrl-A selects all text remap the increment command
 " to be consistent, ctrl-x will be remapped as well
@@ -271,24 +269,21 @@ nnoremap <leader>x <C-x>
 nnoremap <silent> <leader>n :set relativenumber!<cr>
 "add a semicolon to the end of line
 nnoremap <leader>; mqA;<esc>`q
+nnoremap <leader>p mqIprint <esc>`q6l
 "compress multiple blank lines into one
 nnoremap <silent> <leader>1 :v/./,/./-j<cr>:set nohlsearch<cr>
 "add a space in front of and after a character
 nnoremap <leader>5 i<Space><Esc>la<Space><Esc>h
+"how many nonwhitespace characters are in a file
+nnoremap <leader>c :set nohlsearch<cr>:%s/\S//gn<cr>
 "find all duplicate words in a file
 nnoremap <leader>d :set hlsearch<cr>/\(\<\w\+\>\)\_s*\1<cr>
 "find file in nerdtree
 nnoremap <leader>f :NERDTreeFind<cr>
-
-"different ways to format a json file
-"a json file that is already on multiple lines
+"properly format a json file that is on multiple lines
 nnoremap <leader>ff :%!python -m json.tool<cr>
-"a file in json format but not a json file
-nnoremap <leader>fn :%s/{/\r{\r/g<cr>:%s/}/\r}\r/g<cr>gg=G
-"a json file that is all on one line
 nnoremap <leader>fo :%s/{/\r{\r/g<cr>:%s/}/\r}\r/g<cr>:%!python -m json.tool<cr>gg=G
-
-"add quotes around the word
+" add quotes around the word
 nnoremap <leader>' :silent! normal mqea"<Esc>bi"<Esc>`ql
 
 "toggle quick fix menu
@@ -296,13 +291,9 @@ nnoremap <leader>q :call QuickfixToggle()<cr>
 "set ctags tag location
 nnoremap <leader>t :set tags=./tags,tags;$HOME<cr>
 "fix { in a file
-nnoremap <leader>[ mq:%s/{$/\r{/<CR>ggvG=`q
+nnoremap <leader>[ mq:%s/{$/\r{/<cr>ggvG=`q
 
-"D deletes until the end of line, C changes until end of line, Y yanks the
-"whole line? not anymore...
-nnoremap Y y$
-
-"searches start with hlsearch activated
+"searches are magic by default
 nnoremap # :set hlsearch<cr>#
 nnoremap * :set hlsearch<cr>*
 nnoremap / :set hlsearch<cr>/
@@ -316,6 +307,10 @@ nnoremap ? :set hlsearch<cr>?
 " highlight all text entered in last insert mode
 nnoremap <leader>l `[v`]
 
+" D deletes until end of line, C changes until end of line, Y yanks the whole
+" line? not anymore...
+nnoremap Y y$
+
 " swap ; and :
 " nnoremap ; :
 " nnoremap : ;
@@ -324,7 +319,7 @@ nnoremap <leader>l `[v`]
 " INSERT "
 """"""""""
 " return to normal mode by pressing jk
-inoremap jk <esc>
+inoremap jk <esc>l
 
 """"""""""
 " VISUAL "
@@ -349,8 +344,8 @@ onoremap in< :<c-u>normal! f<vi<<cr>
 onoremap in{ :<c-u>normal! f{vi{<cr>
 
 " move with H and L inside of a movement command like ^ and $
-" onoremap H ^
-" onoremap L $
+onoremap H ^
+onoremap L $
 " }}}
 
 """""""""""""""""
@@ -364,10 +359,13 @@ iab curdate ////////////////////<C-[>:r! date /t<C-[>I// <C-[>A// <C-[>o////////
 """"""""""
 " Brogue "
 """"""""""
-iab ukr Unknown Runic:<CR>Definitely Not:<CR><CR>Probably Not:<CR><CR><CR>Could Be:<CR><Up><Up><Up><Up><Up><Up><C-[>A
+iab ukr Unknown Runic:<cr>Definitely Not:<cr><cr>Probably Not:<cr><cr><cr>Could Be:<cr><Up><Up><Up><Up><Up><Up><C-[>A
 iab bl bloodwort near
+iab la lava near
+iab pt paralysis trigger near
 iab de Depth
 iab va Vault:<cr>(took)
+iab vae Vault:<cr>(took)<cr>1 empow
 " }}}
 
 """""""""""""""
@@ -482,11 +480,11 @@ function! s:NextColor(how, echo_color)
 endfunction
 
 " next color scheme
-nnoremap <F8> :call NextColor(1)<CR>
+nnoremap <F8> :call NextColor(1)<cr>
 " previous color scheme
-nnoremap <S-F8> :call NextColor(-1)<CR>
+nnoremap <S-F8> :call NextColor(-1)<cr>
 " random color scheme
-nnoremap <A-F8> :call NextColor(0)<CR>
+nnoremap <A-F8> :call NextColor(0)<cr>
 
 " Set color scheme according to current time of day.
 function! HourColor()
@@ -509,5 +507,5 @@ function! HourColor()
 endfunction
 
 " sets color scheme to match current time of day (needs work)
-nnoremap <F7> :call HourColor()<CR>
+nnoremap <F7> :call HourColor()<cr>
 " }}}
