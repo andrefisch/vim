@@ -40,7 +40,7 @@ augroup END
 augroup sh
     autocmd!
     autocmd FileType sh nnoremap <localleader>c mq^i# <esc>`q2l
-    autocmd FileType sh nnoremap <localleader>u mq:s/^#\s//<cr>`q2h:set nohlsearch<cr>
+    autocmd FileType sh nnoremap <localleader>u mq:s/#\s//<cr>`q2h:set nohlsearch<cr>
     autocmd FileType sh nnoremap <localleader>r :w<cr>:! sh % 
 augroup END
 
@@ -49,7 +49,7 @@ augroup python
     autocmd!
     autocmd FileType python iabbrev <buffer> forl for i in range (0,):<C-[>hi
     autocmd FileType python nnoremap <localleader>c mq^i# <esc>`q2l
-    autocmd FileType python nnoremap <localleader>u mq:s/^#\s//<cr>`q2h:set nohlsearch<cr>
+    autocmd FileType python nnoremap <localleader>u mq:s/#\s//<cr>`q2h:set nohlsearch<cr>
     autocmd FileType python nnoremap <localleader>r :w<cr>:! python % 
 augroup END
 
@@ -65,7 +65,7 @@ augroup perl
     autocmd FileType perl iabbrev <buffer> forl for (my $i = 0; $i <; $i++)<cr>{<C-[>o<C-[>o}<C-[>3k18la
     autocmd FileType perl iabbrev <buffer> AR $ARGV[0]
     autocmd FileType perl nnoremap <localleader>c mq^i# <esc>`q2l
-    autocmd FileType perl nnoremap <localleader>u mq:s/^#\s//<cr>`q2h:set nohlsearch<cr>
+    autocmd FileType perl nnoremap <localleader>u mq:s/#\s//<cr>`q2h:set nohlsearch<cr>
     autocmd FileType perl nnoremap <localleader>r :w<cr>:! perl % 
     autocmd FileType perl set keywordprg=perldoc\ -f
 augroup END
@@ -76,7 +76,7 @@ augroup ruby
     autocmd!
     autocmd FileType ruby iabbrev <buffer> forl for (my $i = 0; i <; i++)<cr>{<C-[>o<C-[>o}<C-[>3k18la
     autocmd FileType ruby nnoremap <localleader>c mq^i# <esc>`q2l
-    autocmd FileType ruby nnoremap <localleader>u mq:s/^#\s//<cr>`q2h:set nohlsearch<cr>
+    autocmd FileType ruby nnoremap <localleader>u mq:s/#\s//<cr>`q2h:set nohlsearch<cr>
     autocmd FileType ruby nnoremap <localleader>r :w<cr>:! ruby % 
 augroup END
 
@@ -85,7 +85,7 @@ augroup java
     autocmd!
     autocmd FileType java iabbrev <buffer> forl for (int i = 0; i <; i++)<cr>{<C-[>o<C-[>o}<C-[>3k18la
     autocmd FileType java nnoremap <localleader>c mq^i// <esc>`q3l
-    autocmd FileType ruby nnoremap <localleader>u mq:s/^\/\/\s//<cr>`q2h:set nohlsearch<cr>
+    autocmd FileType ruby nnoremap <localleader>u mq:s/\/\/\s//<cr>`q2h:set nohlsearch<cr>
     autocmd FileType java nnoremap <localleader>r :w<cr>:! java % 
 augroup END
 
@@ -311,6 +311,10 @@ nnoremap <leader>l `[v`]
 " line? not anymore...
 nnoremap Y y$
 
+" I dont use ;; very much...
+nnoremap ;; :w!<cr>
+inoremap ;; <esc>:w!<cr>a
+
 " swap ; and :
 " nnoremap ; :
 " nnoremap : ;
@@ -362,10 +366,15 @@ iab curdate ////////////////////<C-[>:r! date /t<C-[>I// <C-[>A// <C-[>o////////
 iab ukr Unknown Runic:<cr>Definitely Not:<cr><cr>Probably Not:<cr><cr><cr>Could Be:<cr><Up><Up><Up><Up><Up><Up><C-[>A
 iab bl bloodwort near
 iab la lava near
+iab wa water near
+iab ct caustic gas trap near
 iab pt paralysis trigger near
+iab spt safe paralysis trigger near
 iab de Depth
 iab va Vault:<cr>(took)
 iab vae Vault:<cr>(took)<cr>1 empow
+iab rva Ring Vault:<cr>(took)
+iab sva Staff Vault:<cr>(took)
 " }}}
 
 """""""""""""""

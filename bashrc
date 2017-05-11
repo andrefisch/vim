@@ -219,7 +219,7 @@ export PATH=$PATH:/usr/local/cuda-7.0/bin
 export LD_LIBRARY_PATH=:/usr/local/cuda-7.0/lib64
 export PYTHONPATH="${PYTHONPATH}:/home/andrefisch/caffe/python"
 export PATH=/usr/local/cuda/bin:${PATH}
-PATH=${CUDA_HOME}/bin:${PATH}
+PATH=${CUDA_HOME}/bin:${PATH} 
 export PATH
 export PATH=$PATH:/usr/local/cuda/bin
 export LD_LIBRARY_PATH=:/usr/local/cuda/lib64
@@ -245,18 +245,29 @@ export PATH=$PATH:~/bin
 # added by google protobuf
 export LD_LIBRARY_PATH=/usr/local/lib
 
-# JAVA_HOME for maven
-JAVA_HOME=/usr/lib/jvm/java-8-oracle
+# rbenv home added for ruby on rails
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+export ANDROID_HOME=/usr/local/android/android-studio/bin
+JAVA_HOME=/usr/local/java/jdk1.8.0_102
+# JRE_HOME=/usr/local/java/jre1.8.0_102
+PATH=$PATH:$JRE_HOME/bin:$JAVA_HOME/bin
+export JAVA_HOME
+# export JRE_HOME
+export PATH
 
 # start in vi mode instead of emacs mode
 set -o vi
-bind -f .inputrc
 
 # remap up and down keys to search history
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
 clear
-
 echo "Did you know that:"; whatis $(ls /bin | shuf -n 1)
 echo ""
+
+
+. /home/andrefisch/torch/install/bin/torch-activate
