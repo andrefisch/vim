@@ -410,7 +410,7 @@ augroup colors
 augroup END
 
 let loaded_setcolors = 1
-let s:mycolors = ['darkblue', 'desert', 'elflord', 'evening', 'koehler', 'murphy', 'pablo', 'ron', 'slate', 'solarized', 'torte', 'behelit', 'birds-of-paradise', 'crayon', 'deepsea', 'kkruby', 'material', 'meta5', 'thornbird', 'cgpro', 'madeofcode', 'penultimate'] " colorscheme names that we use to set color
+let s:mycolors = ['behelit', 'birds-of-paradise', 'cgpro', 'cobalt', 'codedark', 'crayon', 'darkblue', 'deepsea', 'desert', 'elflord', 'evening', 'greenwint', 'jgg', 'kkruby', 'koehler', 'madeofcode', 'material', 'meta5', 'molokai', 'murphy', 'pablo', 'penultimate', 'petrel', 'ron', 'slate', 'solarized', 'thornbird', 'tomorrow-night', 'torte'] " colorscheme names that we use to set color
 
 " Set list of color scheme names that we will use, except
 " argument 'now' actually changes the current color scheme.
@@ -488,12 +488,12 @@ function! s:NextColor(how, echo_color)
   endif
 endfunction
 
-" next color scheme
-nnoremap <F8> :call NextColor(1)<cr>
-" previous color scheme
-nnoremap <S-F8> :call NextColor(-1)<cr>
 " random color scheme
-nnoremap <A-F8> :call NextColor(0)<cr>
+nnoremap <F8> :call NextColor(0)<cr>
+" next color scheme
+nnoremap <S-F8> :call NextColor(1)<cr>
+" previous color scheme
+nnoremap <A-F8> :call NextColor(-1)<cr>
 
 " Set color scheme according to current time of day.
 function! HourColor()
