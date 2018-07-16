@@ -217,7 +217,7 @@ alias iftop="sudo iftop -i wlan0"
 # update path for caffe
 export PATH=$PATH:/usr/local/cuda-7.0/bin
 export LD_LIBRARY_PATH=:/usr/local/cuda-7.0/lib64
-export PYTHONPATH="${PYTHONPATH}:/home/andrefisch/caffe/python"
+export PYTHONPATH="${PYTHONPATH}:/home/USERNAME/caffe/python"
 export PATH=/usr/local/cuda/bin:${PATH}
 PATH=${CUDA_HOME}/bin:${PATH} 
 export PATH
@@ -250,6 +250,9 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
+#
+export PATH="$HOME/python/thomasStudents/chromedriver/$PATH"
+
 export ANDROID_HOME=/usr/local/android/android-studio/bin
 JAVA_HOME=/usr/local/java/jdk1.8.0_102
 # JRE_HOME=/usr/local/java/jre1.8.0_102
@@ -270,4 +273,6 @@ echo "Did you know that:"; whatis $(ls /bin | shuf -n 1)
 echo ""
 
 
-. /home/andrefisch/torch/install/bin/torch-activate
+export PATH=$PATH:/home/andrefisch/bin
+
+source '/home/andrefisch/lib/azure-cli/az.completion'
